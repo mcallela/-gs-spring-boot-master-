@@ -22,10 +22,14 @@ steps:
     SourceFolder: '$(system.defaultworkingdirectory)'
     Contents: '**/*.jar'
     TargetFolder: '$(build.artifactstagingdirectory)'
+    CleanTargetFolder: true
+    preserveTimestamp: true
   condition: succeededOrFailed()
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publishing Artifact: drop'
   inputs:
     PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: 'drop'
   condition: succeededOrFailed()
+
